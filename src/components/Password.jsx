@@ -1,16 +1,34 @@
 import React from "react";
 import { useEffect, useState } from "react";
 
-const Password = ({ password, strength }) => {
-    const [style, setStyle] = useState("text-green-500");
-
+const Password = ({ password, strength, children }) => {
+    const [style, setStyle] = useState("input input-bordered ");
     useEffect(() => {
-        if (strength === "Weak") {
-            setStyle("input input-bordered w-full max-w-xs input-error");
-        } else if (strength === "Medium") {
-            setStyle("input input-bordered w-full max-w-xs input-warning");
-        } else if (strength === "Strong") {
-            setStyle("input input-bordered w-full max-w-xs input-success");
+        switch (strength) {
+            case "Too weak":
+                setStyle(
+                    "input input-bordered  border-b-4 border-red-800  text-center font-bold"
+                );
+                break;
+            case "Weak":
+                setStyle(
+                    "input input-bordered border-b-4 border-red-400 text-center font-bold"
+                );
+                break;
+            case "Medium":
+                setStyle(
+                    "input input-bordered  border-b-4 border-yellow-600 text-center font-bold"
+                );
+                break;
+            case "Strong":
+                setStyle(
+                    "input input-bordered border-b-4 border-green-800  text-center font-bold focus:outline-none"
+                );
+                break;
+            default:
+                setStyle(
+                    "input input-bordered  border-b-4 border-green-800 text-center font-bold"
+                );
         }
     });
 

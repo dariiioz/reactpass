@@ -3,19 +3,51 @@ import Checkbox from "./Checkbox";
 import Range from "./Range";
 import Password from "./Password";
 import ButtonNewPassword from "./ButtonNewPassword";
+import { passwordStrength } from "check-password-strength";
+import Title from "./Title";
+import TitleDescription from "./TitleDescription";
+import { Layout } from "lucide-react";
+import LayoutPassword from "./LayoutPassword";
 
 function App() {
     // Initial state
     const [password, setPassword] = useState("");
-    const [length, setLength] = useState(16);
-    const [includeLetters, setIncludeLetters] = useState(true);
+    const [length, setLength] = useState(12);
+    const [includeLowercase, setIncludeLowercase] = useState(true);
+    const [includeUppercase, setIncludeUppercase] = useState(true);
     const [includeNumbers, setIncludeNumbers] = useState(true);
     const [includeSymbols, setIncludeSymbols] = useState(true);
-    const [passwordStrength, setPasswordStrength] = useState("Strong");
+    const [pwStrength, setPwStrength] = useState("");
+    const [strengthStyle, setStrengthStyle] = useState("bg-green-400");
 
-    const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const lowercaseLetters = "abcdefghijklmnpqrstuvwxyz";
+    const uppercaseLetters = lowercaseLetters.toUpperCase();
     const numbers = "0123456789";
     const symbols = "!@#$%^&*";
+
+    const checkPasswordStrength = (pw) => {
+        const strength = passwordStrength(pw).value;
+        handleColor(strength);
+        return strength;
+    };
+    const handleColor = (strength) => {
+        switch (strength) {
+            case "Too weak":
+                setStrengthStyle("bg-red-800");
+                break;
+            case "Weak":
+                setStrengthStyle("bg-red-400");
+                break;
+            case "Medium":
+                setStrengthStyle("bg-yellow-400");
+                break;
+            case "Strong":
+                setStrengthStyle("bg-green-400");
+                break;
+            default:
+                setStrengthStyle("bg-green-400");
+        }
+    };
 
     const generatePassword = () => {
         // Initialize password variable
@@ -23,8 +55,11 @@ function App() {
         let generatedPassword = "";
 
         // Add selected character types to characterList
-        if (includeLetters) {
-            characterList.push(...letters);
+        if (includeLowercase) {
+            characterList.push(...lowercaseLetters);
+        }
+        if (includeUppercase) {
+            characterList.push(...uppercaseLetters);
         }
         if (includeNumbers) {
             characterList.push(...numbers);
@@ -40,54 +75,41 @@ function App() {
             );
             generatedPassword += characterList[characterIndex];
         }
-        // Verify if password contains selected character types
-        const verifPassword = verifyParams(generatedPassword);
-        if (!verifPassword) {
-            generatePassword();
-        }
-        console.log("Good password");
+
+        checkPasswordStrength(generatedPassword);
+        // Update password state
         setPassword(generatedPassword);
-    };
-
-    const verifyParams = (password) => {
-        if (includeLetters && includeNumbers && includeSymbols) {
-            // Vérifier la présence d'au moins un nombre
-            const hasNumber = /\d/.test(password);
-
-            // Vérifier la présence d'au moins un symbole
-            const hasSymbol = /[!@#$%^&*]/.test(password);
-            if (hasNumber && hasSymbol) {
-                return true;
-            }
-        }
-        if (includeLetters && includeNumbers && !includeSymbols) {
-            // Vérifier la présence d'au moins un nombre
-            const hasNumber = /\d/.test(password);
-            if (hasNumber) {
-                return true;
-            }
-        }
-        if (includeLetters && !includeNumbers && includeSymbols) {
-            // Vérifier la présence d'au moins un symbole
-            const hasSymbol = /[!@#$%^&*]/.test(password);
-            if (hasSymbol) {
-                return true;
-            }
-        }
+        // Update password strength state
+        setPwStrength(checkPasswordStrength(generatedPassword));
     };
 
     useEffect(() => {
-        generatePassword();
-        if (includeLetters == false) {
-            setIncludeNumbers(true);
+        if (
+            !includeLowercase &&
+            !includeUppercase &&
+            !includeNumbers &&
+            !includeSymbols
+        ) {
+            setIncludeLowercase(true);
         }
-    }, [length, includeLetters, includeNumbers, includeSymbols]);
+        generatePassword();
+    }, [
+        length,
+        includeLowercase,
+        includeUppercase,
+        includeNumbers,
+        includeSymbols,
+    ]);
 
     return (
-        <div className="bg-base-300">
-            <h1>ReactPass</h1>
-            <h2> Genere a secure password !</h2>
-            <Password password={password} strength={passwordStrength} />
+        <div>
+            <Title>ReactPass</Title>
+            <TitleDescription>A simple password generator 🔑</TitleDescription>
+            <LayoutPassword>
+                <Password password={password} strength={pwStrength} />
+                <ButtonNewPassword generatePassword={generatePassword} />
+            </LayoutPassword>
+
             <ButtonNewPassword generatePassword={generatePassword} />
             <Range
                 label="Length"
@@ -97,15 +119,19 @@ function App() {
                 max={60}
             />
             <Checkbox
-                label="Include Letters (a-z, A-Z)"
-                value={includeLetters}
-                setValue={setIncludeLetters}
+                label="Include lowercase (a-z)"
+                value={includeLowercase}
+                setValue={setIncludeLowercase}
+            />
+            <Checkbox
+                label="Include uppercase (A-Z)"
+                value={includeUppercase}
+                setValue={setIncludeUppercase}
             />
             <Checkbox
                 label="Include Numbers (0-9)"
                 value={includeNumbers}
                 setValue={setIncludeNumbers}
-                disabled={!includeLetters}
             />
             <Checkbox
                 label="Include Symbols (!@#$%^&*)"
