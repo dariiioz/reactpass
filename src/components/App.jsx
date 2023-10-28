@@ -110,7 +110,6 @@ function App() {
                 <ButtonNewPassword generatePassword={generatePassword} />
             </LayoutPassword>
 
-            <ButtonNewPassword generatePassword={generatePassword} />
             <Range
                 label="Length"
                 value={length}
