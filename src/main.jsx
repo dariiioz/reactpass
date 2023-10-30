@@ -5,7 +5,7 @@ import App from "./components/App";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
-        <div>
+        <div className="sm:h-full">
             <App />
         </div>
     </React.StrictMode>
