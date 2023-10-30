@@ -6,8 +6,7 @@ import ButtonNewPassword from "./ButtonNewPassword";
 import { passwordStrength } from "check-password-strength";
 import Title from "./Title";
 import TitleDescription from "./TitleDescription";
-import { Layout } from "lucide-react";
-import LayoutPassword from "./LayoutPassword";
+import StrenghtIndicator from "./StrenghtIndicator";
 
 function App() {
     // Initial state
@@ -18,7 +17,6 @@ function App() {
     const [includeNumbers, setIncludeNumbers] = useState(true);
     const [includeSymbols, setIncludeSymbols] = useState(true);
     const [pwStrength, setPwStrength] = useState("");
-    const [strengthStyle, setStrengthStyle] = useState("bg-green-400");
 
     const lowercaseLetters = "abcdefghijklmnpqrstuvwxyz";
     const uppercaseLetters = lowercaseLetters.toUpperCase();
@@ -27,26 +25,7 @@ function App() {
 
     const checkPasswordStrength = (pw) => {
         const strength = passwordStrength(pw).value;
-        handleColor(strength);
         return strength;
-    };
-    const handleColor = (strength) => {
-        switch (strength) {
-            case "Too weak":
-                setStrengthStyle("bg-red-800");
-                break;
-            case "Weak":
-                setStrengthStyle("bg-red-400");
-                break;
-            case "Medium":
-                setStrengthStyle("bg-yellow-400");
-                break;
-            case "Strong":
-                setStrengthStyle("bg-green-400");
-                break;
-            default:
-                setStrengthStyle("bg-green-400");
-        }
     };
 
     const generatePassword = () => {
@@ -77,6 +56,7 @@ function App() {
         }
 
         checkPasswordStrength(generatedPassword);
+
         // Update password state
         setPassword(generatedPassword);
         // Update password strength state
@@ -103,40 +83,61 @@ function App() {
 
     return (
         <div>
-            <Title>ReactPass</Title>
-            <TitleDescription>A simple password generator 🔑</TitleDescription>
-            <LayoutPassword>
+            <div className=" bg-gray-200  rounded-md shadow-xl xl:m-44 sm:m-4 p-8">
+                <Title>ReactPass</Title>
+                <TitleDescription>
+                    A simple password generator 🔑
+                </TitleDescription>
                 <Password password={password} strength={pwStrength} />
                 <ButtonNewPassword generatePassword={generatePassword} />
-            </LayoutPassword>
 
-            <Range
-                label="Length"
-                value={length}
-                setValue={setLength}
-                min={2}
-                max={60}
-            />
-            <Checkbox
-                label="Include lowercase (a-z)"
-                value={includeLowercase}
-                setValue={setIncludeLowercase}
-            />
-            <Checkbox
-                label="Include uppercase (A-Z)"
-                value={includeUppercase}
-                setValue={setIncludeUppercase}
-            />
-            <Checkbox
-                label="Include Numbers (0-9)"
-                value={includeNumbers}
-                setValue={setIncludeNumbers}
-            />
-            <Checkbox
-                label="Include Symbols (!@#$%^&*)"
-                value={includeSymbols}
-                setValue={setIncludeSymbols}
-            />
+                <div className="text-lg font-semibold mt-4">
+                    Password Strength
+                </div>
+                <StrenghtIndicator strength={pwStrength} />
+                <div className=" mt-4 rounded-sm">
+                    <div className="text-lg font-semibold">
+                        Customize Your Password
+                    </div>
+                    <div className="flex space-x-4 mt-4">
+                        <Checkbox
+                            label="Lowercase (a-z / o-O is excluded to avoid confusion with 0)"
+                            value={includeLowercase}
+                            setValue={setIncludeLowercase}
+                        />
+                        <Checkbox
+                            label="Uppercase (A-Z)"
+                            value={includeUppercase}
+                            setValue={setIncludeUppercase}
+                        />
+                        <Checkbox
+                            label="Numbers (0-9)"
+                            value={includeNumbers}
+                            setValue={setIncludeNumbers}
+                        />
+                        <Checkbox
+                            label="Symbols (!@#$%^&*)"
+                            value={includeSymbols}
+                            setValue={setIncludeSymbols}
+                        />
+                    </div>
+                    <div className="text-lg font-semibold mt-4">
+                        Password Length : {length}
+                    </div>
+                    <div className="mt-2">
+                        <Range
+                            value={length}
+                            setValue={setLength}
+                            min={2}
+                            max={64}
+                        />
+                        <div className="flex justify-between mt-2">
+                            <span className="text-gray-700">2 Characters</span>
+                            <span className="text-gray-700">64 Characters</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

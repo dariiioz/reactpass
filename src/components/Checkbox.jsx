@@ -6,15 +6,15 @@ const Checkbox = ({ label, value, setValue, disabled = false }) => {
     };
     return (
         <div className="form-control">
-            <label className="label cursor-pointer">
-                <span className="label-text">{label}</span>
+            <label className="inline-flex items-center">
                 <input
                     type="checkbox"
                     checked={value}
-                    className="checkbox"
+                    className="checkbox checkbox-sm"
                     onClick={handleChange}
                     disabled={disabled}
                 />
+                <span className="ml-2 text-gray-700">{label}</span>
             </label>
         </div>
     );
