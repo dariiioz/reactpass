@@ -7,6 +7,7 @@ import { passwordStrength } from "check-password-strength";
 import Title from "./Title";
 import TitleDescription from "./TitleDescription";
 import StrenghtIndicator from "./StrenghtIndicator";
+import Footer from "./Footer";
 
 function App() {
     // Initial state
@@ -83,7 +84,7 @@ function App() {
 
     return (
         <div>
-            <div className=" bg-gray-200  rounded-md shadow-xl xl:m-44 sm:m-4 p-8">
+            <div className=" bg-gray-200  rounded-md shadow-xl xl:mx-44 xl:mt-36 sm:m-4 p-8">
                 <Title>ReactPass</Title>
                 <TitleDescription>
                     A simple password generator 🔑
@@ -97,7 +98,7 @@ function App() {
                 <StrenghtIndicator strength={pwStrength} />
                 <div className=" mt-4 rounded-sm">
                     <div className="text-lg font-semibold">
-                        Customize Your Password
+                        <p>Customize Your Password</p>
                     </div>
                     <div className="flex space-x-4 mt-4">
                         <Checkbox
@@ -122,20 +123,9 @@ function App() {
                         />
                     </div>
                     <div className="text-lg font-semibold mt-4">
-                        Password Length : {length}
+                        <p>Password Length : {length}</p>
                     </div>
-                    <div className="mt-2">
-                        <Range
-                            value={length}
-                            setValue={setLength}
-                            min={2}
-                            max={64}
-                        />
-                        <div className="flex justify-between mt-2">
-                            <span className="text-gray-700">2 Characters</span>
-                            <span className="text-gray-700">64 Characters</span>
-                        </div>
-                    </div>
+                    <Footer />
                 </div>
             </div>
         </div>
