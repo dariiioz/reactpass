@@ -12,7 +12,8 @@ ReactPass is a simple password generator using React, DaisyUI and Vite.
 
 ## Screenshots
 
-![image](https://user-images.githubusercontent.com/26320684/234520715-1f28deba-911c-49aa-917e-cb91faadaf9e.png)
+![image](https://github.com/dariiioz/ReactPass/assets/26320684/c4c4fabf-1844-4665-a472-97d01918fa87)
+
 
 
 ## 🔗 Links
