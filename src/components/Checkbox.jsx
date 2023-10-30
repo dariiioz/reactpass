@@ -10,11 +10,11 @@ const Checkbox = ({ label, value, setValue, disabled = false }) => {
                 <input
                     type="checkbox"
                     checked={value}
-                    className="checkbox checkbox-sm"
+                    className="checkbox checkbox-sm ml-4"
                     onClick={handleChange}
                     disabled={disabled}
                 />
-                <span className="ml-2 text-gray-700">{label}</span>
+                <span className="ml-1 text-gray-700">{label}</span>
             </label>
         </div>
     );

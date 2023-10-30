@@ -84,7 +84,7 @@ function App() {
 
     return (
         <div>
-            <div className=" bg-gray-200  rounded-md shadow-xl xl:mx-44 xl:mt-36 sm:m-4 p-8">
+            <div className=" bg-gray-200  rounded-md shadow-xl xl:mx-44 xl:mt-36 sm:m-4 p-8 ">
                 <Title>ReactPass</Title>
                 <TitleDescription>
                     A simple password generator 🔑
@@ -101,26 +101,28 @@ function App() {
                         <p>Customize Your Password</p>
                     </div>
                     <div className="flex space-x-4 mt-4">
-                        <Checkbox
-                            label="Lowercase (a-z)"
-                            value={includeLowercase}
-                            setValue={setIncludeLowercase}
-                        />
-                        <Checkbox
-                            label="Uppercase (A-Z)"
-                            value={includeUppercase}
-                            setValue={setIncludeUppercase}
-                        />
-                        <Checkbox
-                            label="Numbers (0-9)"
-                            value={includeNumbers}
-                            setValue={setIncludeNumbers}
-                        />
-                        <Checkbox
-                            label="Symbols (!@#$%^&*)"
-                            value={includeSymbols}
-                            setValue={setIncludeSymbols}
-                        />
+                        <div className="flex flex-col sm:flex-row">
+                            <Checkbox
+                                label="Lowercase (a-z)"
+                                value={includeLowercase}
+                                setValue={setIncludeLowercase}
+                            />
+                            <Checkbox
+                                label="Uppercase (A-Z)"
+                                value={includeUppercase}
+                                setValue={setIncludeUppercase}
+                            />
+                            <Checkbox
+                                label="Numbers (0-9)"
+                                value={includeNumbers}
+                                setValue={setIncludeNumbers}
+                            />
+                            <Checkbox
+                                label="Symbols (!@#$%^&*)"
+                                value={includeSymbols}
+                                setValue={setIncludeSymbols}
+                            />
+                        </div>
                     </div>
                     <div className="text-lg font-semibold mt-4">
                         <p>Password Length : {length}</p>
