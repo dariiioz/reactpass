@@ -83,53 +83,47 @@ function App() {
     ]);
 
     return (
-        <div>
-            <div className=" bg-gray-200  rounded-md shadow-xl xl:mx-44 xl:mt-36 sm:m-4 p-8 ">
-                <Title>ReactPass</Title>
-                <TitleDescription>
-                    A simple password generator 🔑
-                </TitleDescription>
-                <Password password={password} strength={pwStrength} />
-                <ButtonNewPassword generatePassword={generatePassword} />
+        <div className=" bg-gray-200  rounded-md shadow-xl xl:mx-44 xl:mt-36 sm:m-4 p-8 sm:h-full ">
+            <Title>ReactPass</Title>
+            <TitleDescription>A simple password generator 🔑</TitleDescription>
+            <Password password={password} strength={pwStrength} />
+            <ButtonNewPassword generatePassword={generatePassword} />
 
+            <div className="text-lg font-semibold mt-4">Password Strength</div>
+            <StrenghtIndicator strength={pwStrength} />
+            <div className=" mt-4 rounded-sm">
+                <div className="text-lg font-semibold">
+                    <p>Customize Your Password</p>
+                </div>
+                <div className="flex space-x-4 mt-4">
+                    <div className="flex flex-col sm:flex-row">
+                        <Checkbox
+                            label="Lowercase (a-z)"
+                            value={includeLowercase}
+                            setValue={setIncludeLowercase}
+                        />
+                        <Checkbox
+                            label="Uppercase (A-Z)"
+                            value={includeUppercase}
+                            setValue={setIncludeUppercase}
+                        />
+                        <Checkbox
+                            label="Numbers (0-9)"
+                            value={includeNumbers}
+                            setValue={setIncludeNumbers}
+                        />
+                        <Checkbox
+                            label="Symbols (!@#$%^&*)"
+                            value={includeSymbols}
+                            setValue={setIncludeSymbols}
+                        />
+                    </div>
+                </div>
                 <div className="text-lg font-semibold mt-4">
-                    Password Strength
+                    <p>Password Length : {length}</p>
                 </div>
-                <StrenghtIndicator strength={pwStrength} />
-                <div className=" mt-4 rounded-sm">
-                    <div className="text-lg font-semibold">
-                        <p>Customize Your Password</p>
-                    </div>
-                    <div className="flex space-x-4 mt-4">
-                        <div className="flex flex-col sm:flex-row">
-                            <Checkbox
-                                label="Lowercase (a-z)"
-                                value={includeLowercase}
-                                setValue={setIncludeLowercase}
-                            />
-                            <Checkbox
-                                label="Uppercase (A-Z)"
-                                value={includeUppercase}
-                                setValue={setIncludeUppercase}
-                            />
-                            <Checkbox
-                                label="Numbers (0-9)"
-                                value={includeNumbers}
-                                setValue={setIncludeNumbers}
-                            />
-                            <Checkbox
-                                label="Symbols (!@#$%^&*)"
-                                value={includeSymbols}
-                                setValue={setIncludeSymbols}
-                            />
-                        </div>
-                    </div>
-                    <div className="text-lg font-semibold mt-4">
-                        <p>Password Length : {length}</p>
-                    </div>
-                    <Range value={length} setValue={setLength} />
-                    <Footer />
-                </div>
+                <Range value={length} setValue={setLength} />
+                <Footer />
             </div>
         </div>
     );
