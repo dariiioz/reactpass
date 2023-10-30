@@ -83,7 +83,7 @@ function App() {
     ]);
 
     return (
-        <div className=" bg-gray-200  rounded-md shadow-xl xl:mx-44 xl:mt-36 sm:m-4 p-8 sm:h-full ">
+        <div className=" bg-gray-200  rounded-md shadow-xl xl:mx-44 xl:mt-36 sm:m-4 p-8 ">
             <Title>ReactPass</Title>
             <TitleDescription>A simple password generator 🔑</TitleDescription>
             <Password password={password} strength={pwStrength} />
