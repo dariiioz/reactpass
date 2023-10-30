@@ -127,6 +127,7 @@ function App() {
                     <div className="text-lg font-semibold mt-4">
                         <p>Password Length : {length}</p>
                     </div>
+                    <Range value={length} setValue={setLength} />
                     <Footer />
                 </div>
             </div>
