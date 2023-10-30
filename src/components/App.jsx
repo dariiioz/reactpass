@@ -102,7 +102,7 @@ function App() {
                     </div>
                     <div className="flex space-x-4 mt-4">
                         <Checkbox
-                            label="Lowercase (a-z / o-O is excluded to avoid confusion with 0)"
+                            label="Lowercase (a-z)"
                             value={includeLowercase}
                             setValue={setIncludeLowercase}
                         />
