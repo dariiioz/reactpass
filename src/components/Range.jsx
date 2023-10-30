@@ -1,6 +1,15 @@
 import React from "react";
 
-const Range = ({ label, value, setValue, min, max }) => {
+/**
+ * Range component
+ * @param {number} value - Range value
+ * @param {function} setValue - Range value setter
+ * @param {number} min - Range min value
+ * @param {number} max - Range max value
+ * @returns {JSX.Element} - Range component
+ */
+
+const Range = ({ value, setValue, min, max }) => {
     return (
         <div>
             <input

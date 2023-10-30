@@ -1,5 +1,10 @@
 import React from "react";
 
+/**
+ * Footer component
+ * @returns {JSX.Element} - Footer component
+ */
+
 const Footer = () => {
     return (
         <div className="text-center mt-2">

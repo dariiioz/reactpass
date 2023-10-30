@@ -1,6 +1,12 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 
+/**
+ * StrenghtIndicator component
+ * @param {string} strength - Password strength
+ * @returns {JSX.Element} - StrenghtIndicator component
+ */
+
 const StrenghtIndicator = ({ strength }) => {
     const [strengthDivStyle, setStrengthDivStyle] = useState("");
     const [strengthTextStyle, setStrengthTextStyle] = useState("Too weak");

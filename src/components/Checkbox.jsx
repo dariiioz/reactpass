@@ -1,4 +1,13 @@
 import React from "react";
+/**
+ * Checkbox component
+ * @param {string} label - Checkbox label
+ * @param {boolean} value - Checkbox value
+ * @param {function} setValue - Checkbox value setter
+ * @param {boolean} disabled - Checkbox disabled
+ * @returns {JSX.Element} - Checkbox component
+ *
+ */
 
 const Checkbox = ({ label, value, setValue, disabled = false }) => {
     const handleChange = () => {

@@ -1,4 +1,9 @@
 import React from "react";
+/**
+ * Title component
+ * @param {JSX.Element} children - Children components
+ * @returns {JSX.Element} - Title component
+ */
 
 const Title = ({ children }) => {
     return (

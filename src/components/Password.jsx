@@ -1,5 +1,10 @@
 import React from "react";
-import { useEffect, useState } from "react";
+
+/**
+ * Password component
+ * @param {string} password - Password
+ * @returns {JSX.Element} - Password component
+ */
 
 const Password = ({ password }) => {
     return (

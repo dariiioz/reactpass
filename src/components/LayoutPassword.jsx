@@ -1,4 +1,9 @@
 import React from "react";
+/*
+ * LayoutPassword component
+ * @param {JSX.Element} children - Children components
+ * @returns {JSX.Element} - LayoutPassword component
+ */
 
 const LayoutPassword = ({ children }) => {
     return (

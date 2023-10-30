@@ -1,6 +1,12 @@
 import React from "react";
 import { RotateCcw } from "lucide-react";
 
+/**
+ * ButtonNewPassword component
+ * @param {function} generatePassword - Generate password function
+ * @returns {JSX.Element} - ButtonNewPassword component
+ */
+
 const ButtonNewPassword = ({ generatePassword }) => {
     return (
         <button

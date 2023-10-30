@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { passwordStrength } from "check-password-strength";
+
+// Import components
 import Checkbox from "./Checkbox";
 import Range from "./Range";
 import Password from "./Password";
 import ButtonNewPassword from "./ButtonNewPassword";
-import { passwordStrength } from "check-password-strength";
 import Title from "./Title";
 import TitleDescription from "./TitleDescription";
 import StrenghtIndicator from "./StrenghtIndicator";
 import Footer from "./Footer";
+
+/**
+ * App component
+ */
 
 function App() {
     // Initial state
@@ -19,15 +25,27 @@ function App() {
     const [includeSymbols, setIncludeSymbols] = useState(true);
     const [pwStrength, setPwStrength] = useState("");
 
+    // Initialize character types
     const lowercaseLetters = "abcdefghijklmnpqrstuvwxyz";
     const uppercaseLetters = lowercaseLetters.toUpperCase();
     const numbers = "0123456789";
     const symbols = "!@#$%^&*";
 
+    /*
+     * Check password strength
+     * @param {string} pw - Password
+     * @returns {string} - Password strength
+     * */
+
     const checkPasswordStrength = (pw) => {
         const strength = passwordStrength(pw).value;
         return strength;
     };
+
+    /*
+     * Generate password
+     * @returns {string} - Generated password
+     * */
 
     const generatePassword = () => {
         // Initialize password variable
