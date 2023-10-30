@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500&family=Montserrat:wght@500&family=Roboto&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,7 +7,7 @@
 
 
 h1{
-     font-family: "Montserrat", sans-serif;
+     font-family: "Fira Sans", sans-serif;
 }
 p, input, button, label, a{
      font-family: "Roboto", sans-serif;
