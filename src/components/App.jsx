@@ -10,6 +10,7 @@ import Title from "./Title";
 import TitleDescription from "./TitleDescription";
 import StrenghtIndicator from "./StrenghtIndicator";
 import Footer from "./Footer";
+import { Toaster } from "react-hot-toast";
 
 /**
  * App component
@@ -143,6 +144,7 @@ function App() {
                 <Range value={length} setValue={setLength} />
                 <Footer />
             </div>
+            <Toaster />
         </div>
     );
 }
